@@ -42,6 +42,7 @@ export default () =>
             movie,
             onwatchclick: () ->
               movie.watchcount++
+              DB.saveMovies()
             onremoveclick: () ->
               DB.removeMovie(movie.id)
           }
