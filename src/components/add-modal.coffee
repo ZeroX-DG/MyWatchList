@@ -33,6 +33,8 @@ getSearchResult = (searchTerm, cb) ->
     .then (resp) -> resp.json()
     .then (data) ->
       result = data.films.map (raw_movie) ->
+        if !raw_movie.stills?
+          return
         movie =
           id: raw_movie.id
           title: raw_movie.title
@@ -41,6 +43,7 @@ getSearchResult = (searchTerm, cb) ->
           thumb: raw_movie.stills.square
           img: raw_movie.stills.medium
           watchcount: 0
+      .filter (movie) -> movie
       cb(result)
 
 export default () ->
