@@ -1,0 +1,89 @@
+.search-overlay
+  width: 100%
+  height: 100%
+  position: fixed
+  top: 0
+  left: 0
+  z-index: 5
+
+.search-modal
+  width: 50%
+  position: relative
+  top: 10%
+  left: 25%
+  background: white
+  z-index: 10
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25)
+  border: 1px solid #ebebeb
+  .credit
+    height: 50px
+    width: 100%
+    line-height: 50px
+    text-align: center
+    position: absolute
+    bottom: 0
+  .result-list
+    position: absolute
+    width: 100%
+    max-height: calc(100% - 110px)
+    overflow: auto
+  .movie-card-search
+    position: relative
+    background-size: center
+    display: flex
+    align-items: center
+    padding: 20px 10px
+    box-sizing: border-box
+    .movie-img
+      width: 100px
+      height: 100px
+      margin-right: 20px
+    .add-button
+      border: none
+      padding: 10px 20px
+      border-radius: 20px
+      font-size: 16px
+      outline: none
+      position: absolute
+      right: 20px
+      background: #ededed
+      cursor: pointer
+      transition: all 0.3s
+      &:hover
+        background: #6c5ce7
+        color: white
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25)
+    .info
+      width: calc(100% - 100px - 200px)
+      .title
+        text-overflow: ellipsis
+        overflow: hidden
+        white-space: nowrap
+      .meta, .title
+        color: black
+        margin: 0
+        padding: 0
+      .meta
+        display: flex
+        align-items: center
+        .directors
+          display: inline-block
+          max-width: calc(100% - 100px)
+          color: inherit
+          font-weight: normal
+          text-overflow: ellipsis
+          overflow: hidden
+          white-space: nowrap
+        .year
+          position: relative
+          color: inherit
+          margin-left: 20px
+          font-weight: normal
+          &::before
+            content: ''
+            position: absolute
+            background: black
+            width: 1px
+            height: 100%
+            left: -10px
+            top: -1px

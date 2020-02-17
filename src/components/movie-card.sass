@@ -1,0 +1,95 @@
+.movie-card
+  width: 100%
+  position: relative
+  display: inline-box
+  box-sizing: border-box
+  transition: box-shadow 0.3s
+  &:hover
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25)
+    .watch-status
+      opacity: 1!important
+    .remove
+      opacity: 1!important
+  .remove
+    outline: none
+    border: none
+    border-radius: 50%
+    display: flex
+    align-items: center
+    justify-content: center
+    width: 33px
+    height: 33px
+    position: absolute
+    top: 15px
+    right: 15px
+    background: #d63031
+    opacity: 0
+    transition: all 0.3s
+    cursor: pointer
+    i
+      color: white
+  .watch-status
+    border-radius: 20px
+    position: absolute
+    top: 15px
+    left: 15px
+    background: #6c5ce7
+    padding: 5px 10px
+    box-sizing: border-box
+    cursor: pointer
+    transition: all 0.3s
+    display: flex
+    align-items: center
+    justify-content: center
+    .watch-count
+      color: white
+      user-select: none
+      font-size: 16px
+    .watch-icon
+      color: white
+      transition: all 0.3s
+      display: none
+    &.no-watch
+      width: 33px
+      height: 33px
+      opacity: 0
+      .watch-icon
+        display: inline
+      .watch-count
+        display: none
+    &:hover
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25)
+      
+  .background
+    width: 100%
+    display: block
+  .info
+    width: 100%
+    position: absolute
+    bottom: 0px
+    padding: 10px 15px
+    box-sizing: border-box
+    z-index: 1
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.0), rgba(0, 0, 0, 0.8))
+    .meta, .title
+      color: white
+      margin: 0
+      padding: 0
+    .meta
+      .directors
+        color: inherit
+        font-weight: normal
+      .year
+        position: relative
+        color: inherit
+        margin-left: 20px
+        font-weight: normal
+        &::before
+          content: ''
+          position: absolute
+          background: white
+          width: 1px
+          height: 100%
+          left: -10px
+          top: -1px
+ 
