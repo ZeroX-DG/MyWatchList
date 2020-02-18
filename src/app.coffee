@@ -52,14 +52,14 @@ export default () =>
           searchTerm = e.target.value
       }
       m EmptyMessage, { show: DB.movies.length == 0 }
-      m '.row', { style: 'margin-top: 25px' },
+      m '.grid',
         DB.movies
         .filter (movie) ->
           movie.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
           movie.directors.some (director) ->
             director.toLowerCase().includes(searchTerm.toLowerCase())
         .map (movie) ->
-          m '.col-4', m MovieCard, {
+          m '.col-4.col-2-sm', m MovieCard, {
             movie,
             onwatchclick: () ->
               movie.watchcount++
