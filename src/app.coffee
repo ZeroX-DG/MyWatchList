@@ -3,6 +3,8 @@ import SearchBar from './components/search-bar.coffee'
 import MovieCard from './components/movie-card.coffee'
 import AddModal from './components/add-modal.coffee'
 import DB from './lib/db.coffee'
+import GistDB from './lib/gist.coffee'
+import Swal from 'sweetalert2'
 
 EmptyMessage = () ->
   view: (vnode) ->
@@ -10,6 +12,25 @@ EmptyMessage = () ->
     m 'p.empty', {
       style: "display: #{if show then 'block' else 'none'}"
     }, 'Your watch list is empty'
+
+updateGistInfo = (cb) ->
+  Swal.fire {
+    title: 'Gist information'
+    html:
+      '<input id="token" placeholder="Github token" class="swal2-input">' +
+      '<input id="gist-id" placeholder="Gist ID (optional)" class="swal2-input">'
+    focusConfirm: false
+    preConfirm: () ->
+      [
+        document.getElementById('token').value,
+        document.getElementById('gist-id').value
+      ]
+  }
+  .then ({ value: formValues }) ->
+    GistDB.saveGistInfo formValues[0], formValues[1]
+    GistDB.loadGist()
+    if cb?
+      cb()
 
 export default () =>
   showAddModal = false
@@ -46,8 +67,36 @@ export default () =>
             onremoveclick: () ->
               DB.removeMovie(movie.id)
           }
-      m 'button#add-btn', {
+      m 'button.float-btn#add-btn', {
         onclick: () ->
           showAddModal = true
       }, m 'i.fa.fa-plus'
+      m 'button.float-btn#sync-btn', {
+        onclick: () ->
+          updateGistInfo()
+      }, m 'i.fa.fa-cloud'
+      m 'button.float-btn#push-btn', {
+        onclick: () ->
+          if !GistDB.hasEnoughInfo()
+            updateGistInfo () ->
+              GistDB.push DB.movies
+          else
+            if !GistDB.isLoaded()
+              GistDB.loadGist()
+            GistDB.push DB.movies
+      }, m 'i.fa.fa-cloud-upload'
+      m 'button.float-btn#pull-btn', {
+        onclick: () ->
+          if !GistDB.hasEnoughInfo()
+            updateGistInfo () ->
+              GistDB.pull (movies) ->
+                DB.movies = movies
+                DB.saveMovies()
+          else
+            if !GistDB.isLoaded()
+              GistDB.loadGist()
+            GistDB.pull (movies) ->
+              DB.movies = movies
+              DB.saveMovies()
+      }, m 'i.fa.fa-cloud-download'
     ]

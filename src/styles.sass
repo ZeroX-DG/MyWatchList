@@ -1,18 +1,39 @@
-#add-btn
+.float-btn
   position: fixed
-  bottom: 20px
-  right: 20px
   border-radius: 50%
-  width: 50px
-  height: 50px
   border: none
   outline: none
   cursor: pointer
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25)
-  background: #6c5ce7
   z-index: 100
+  transition: all 0.3s
+  overflow: hidden
   i
     color: white
+
+#add-btn
+  bottom: 20px
+  right: 20px
+  width: 50px
+  height: 50px
+  background: #6c5ce7
+
+#sync-btn, #push-btn, #pull-btn
+  right: 25px
+  width: 40px
+  height: 40px
+
+#sync-btn
+  bottom: 80px
+  background: #0984e3
+
+#push-btn
+  bottom: 180px
+  background: #fdcb6e
+
+#pull-btn
+  bottom: 130px
+  background: #d63031
 
 .empty
   width: 100%

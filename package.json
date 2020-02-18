@@ -7,7 +7,10 @@
     "dev": "parcel index.html",
     "build": "parcel build index.html"
   },
-  "keywords": ["Movie", "watchlist"],
+  "keywords": [
+    "Movie",
+    "watchlist"
+  ],
   "author": "Viet Hung Nguyen <viethungax@gmail.com>",
   "license": "MIT",
   "devDependencies": {
@@ -16,7 +19,12 @@
     "sass": "^1.25.0"
   },
   "dependencies": {
+    "gists": "^2.0.0",
     "mithril": "^2.0.4",
-    "simplegrid": "^1.0.2"
-  }
+    "simplegrid": "^1.0.2",
+    "sweetalert2": "^9.7.2"
+  },
+  "browserslist": [
+    "last 2 Chrome versions"
+  ]
 }
