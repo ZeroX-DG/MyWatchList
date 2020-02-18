@@ -90,12 +90,14 @@ export default () =>
           if !GistDB.hasEnoughInfo()
             updateGistInfo () ->
               GistDB.pull (movies) ->
+                console.log movies
                 DB.movies = movies
                 DB.saveMovies()
           else
             if !GistDB.isLoaded()
               GistDB.loadGist()
             GistDB.pull (movies) ->
+              console.log movies
               DB.movies = movies
               DB.saveMovies()
       }, m 'i.fa.fa-cloud-download'

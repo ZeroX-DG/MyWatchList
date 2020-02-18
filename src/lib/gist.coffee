@@ -10,7 +10,7 @@ GistDB =
       token: gistToken
     }
   saveGistInfo: (newGistToken, newGistID) ->
-    localStorage.setItem 'gistID', newGistID
+    localStorage.setItem 'gistID', newGistID ? null
     localStorage.setItem 'gistToken', newGistToken
     gistID = localStorage.getItem 'gistID'
     gistToken = localStorage.getItem 'gistToken'
@@ -22,12 +22,12 @@ GistDB =
     if gistID
       gists.get gistID
       .then (res) ->
-        content = res.files.movies.content
+        content = res.body.files.movies.content
         cb JSON.parse(content)
     else
       cb(null)
   push: (movies) ->
-    if !gistID?
+    if !gistID
       gists.create {
         description: 'MovieListDB'
         files:
@@ -35,7 +35,7 @@ GistDB =
             content: JSON.stringify(movies)
       }
       .then (res) ->
-        gistID = res.id
+        gistID = res.body.id
         localStorage.setItem 'gistID', gistID
     else
       gists.edit gistID, {
