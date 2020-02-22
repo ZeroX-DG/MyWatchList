@@ -19,7 +19,7 @@ export default () ->
       m 'img.background', { src: img }
       m '.info', [
         m 'p.meta', [
-          m 'span.directors', directors.slice(0, 5).join(', ')
+          m 'span.directors', directors.slice(0, 2).join(', ')
           m 'span.year', year
         ]
         m 'h2.title', title
