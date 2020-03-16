@@ -3,8 +3,8 @@ import './search-bar.sass'
 
 export default () ->
   view: (vnode) ->
-    { onchange } = vnode.attrs
-    m '#search-bar', [
+    { onchange, style } = vnode.attrs
+    m '#search-bar', { style }, [
       m 'i.fa.fa-search#search-icon'
       m 'input#search-box', {
         oninput: onchange,

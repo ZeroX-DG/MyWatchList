@@ -48,6 +48,12 @@ export default () =>
           showAddModal = false
       }
       m SearchBar, {
+        style: '
+          position: fixed;
+          z-index: 1000;
+          background: white;
+          top: 0;
+          left: 0;'
         onchange: (e) ->
           searchTerm = e.target.value
       }
