@@ -4,13 +4,10 @@
   "description": "A simple movie watch list powered by Mubi.com",
   "main": "index.js",
   "scripts": {
-    "dev": "parcel index.html",
+    "dev": "parcel index.html -p 8000",
     "build": "parcel build index.html"
   },
-  "keywords": [
-    "Movie",
-    "watchlist"
-  ],
+  "keywords": ["Movie", "watchlist"],
   "author": "Viet Hung Nguyen <viethungax@gmail.com>",
   "license": "MIT",
   "devDependencies": {
@@ -24,7 +21,5 @@
     "simplegrid": "^1.0.2",
     "sweetalert2": "^9.7.2"
   },
-  "browserslist": [
-    "last 2 Chrome versions"
-  ]
+  "browserslist": ["last 2 Chrome versions"]
 }

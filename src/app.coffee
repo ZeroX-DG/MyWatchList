@@ -67,38 +67,40 @@ export default () =>
             onremoveclick: () ->
               DB.removeMovie(movie.id)
           }
-      m 'button.float-btn#add-btn', {
-        onclick: () ->
-          showAddModal = true
-      }, m 'i.fa.fa-plus'
-      m 'button.float-btn#sync-btn', {
-        onclick: () ->
-          updateGistInfo()
-      }, m 'i.fa.fa-cloud'
-      m 'button.float-btn#push-btn', {
-        onclick: () ->
-          if !GistDB.hasEnoughInfo()
-            updateGistInfo () ->
+      m '.tools', [
+        m 'span.tool', {
+          onclick: () ->
+            showAddModal = true
+        }, m 'i.fa.fa-plus'
+        m 'span.tool', {
+          onclick: () ->
+            updateGistInfo()
+        }, m 'i.fa.fa-cloud'
+        m 'span.tool', {
+          onclick: () ->
+            if !GistDB.hasEnoughInfo()
+              updateGistInfo () ->
+                GistDB.push DB.movies
+            else
+              if !GistDB.isLoaded()
+                GistDB.loadGist()
               GistDB.push DB.movies
-          else
-            if !GistDB.isLoaded()
-              GistDB.loadGist()
-            GistDB.push DB.movies
-      }, m 'i.fa.fa-cloud-upload'
-      m 'button.float-btn#pull-btn', {
-        onclick: () ->
-          if !GistDB.hasEnoughInfo()
-            updateGistInfo () ->
+        }, m 'i.fa.fa-cloud-upload'
+        m 'span.tool', {
+          onclick: () ->
+            if !GistDB.hasEnoughInfo()
+              updateGistInfo () ->
+                GistDB.pull (movies) ->
+                  DB.movies = movies
+                  DB.saveMovies()
+                  m.redraw()
+            else
+              if !GistDB.isLoaded()
+                GistDB.loadGist()
               GistDB.pull (movies) ->
                 DB.movies = movies
                 DB.saveMovies()
                 m.redraw()
-          else
-            if !GistDB.isLoaded()
-              GistDB.loadGist()
-            GistDB.pull (movies) ->
-              DB.movies = movies
-              DB.saveMovies()
-              m.redraw()
-      }, m 'i.fa.fa-cloud-download'
+        }, m 'i.fa.fa-cloud-download'
+      ]
     ]
