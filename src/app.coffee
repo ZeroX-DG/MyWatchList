@@ -60,6 +60,7 @@ export default () =>
       m EmptyMessage, { show: DB.movies.length == 0 }
       m '.grid',
         DB.movies
+        .slice()
         .reverse()
         .filter (movie) ->
           movie.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
